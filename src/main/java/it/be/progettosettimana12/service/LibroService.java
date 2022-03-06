@@ -1,5 +1,6 @@
 package it.be.progettosettimana12.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,17 @@ public class LibroService {
 
 	public void deleteLibroById(Long id) {
 		libroRepository.deleteById(id);
+	}
+
+	public void deleteLibriNoAutori() {
+		List<Libro> all = libroRepository.findAll();
+		List<Libro> libriNoAutori = new ArrayList<>();
+		for (Libro libro : all) {
+			if (libro.getAutori().isEmpty()) {
+				libriNoAutori.add(libro);
+			}
+		}
+		libroRepository.deleteAll(libriNoAutori);
 	}
 
 }

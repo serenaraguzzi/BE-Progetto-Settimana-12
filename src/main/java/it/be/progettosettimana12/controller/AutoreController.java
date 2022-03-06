@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import it.be.progettosettimana12.model.Autore;
+import it.be.progettosettimana12.model.Libro;
 import it.be.progettosettimana12.service.AutoreService;
+import it.be.progettosettimana12.service.LibroService;
 
 @SecurityRequirement(name = "bearerAuth")
 @RestController
@@ -26,6 +28,9 @@ public class AutoreController {
 
 	@Autowired
 	private AutoreService autoreService;
+
+	@Autowired
+	private LibroService libroService;
 
 	@GetMapping("/findallAutori")
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
@@ -65,8 +70,20 @@ public class AutoreController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@Operation(summary = "Cancella un autore", description = "Inserire un ID di un autore da cancellare")
 	public ResponseEntity<String> deleteAutoreById(@PathVariable Long id) {
-		autoreService.deleteAutoreById(id);
-		return new ResponseEntity<>("Autore cancellato", HttpStatus.OK);
+		Optional<Autore> find = autoreService.findAutoreById(id);
+		if (!find.isEmpty()) {
+			Autore delete = find.get();
+			List<Libro> allLibri = libroService.findAllLibri();
+			for (Libro libro : allLibri) {
+				libro.deleteAllFromSet(delete);
+			}
+			libroService.deleteLibriNoAutori();
+			autoreService.deleteAutoreById(id);
+			return new ResponseEntity<>("Autore e libri corrispondenti cancellati", HttpStatus.OK);
+		} 
+		else {
+			return new ResponseEntity<>("Autore non trovato", HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@PutMapping("/updateAutore/{id}")

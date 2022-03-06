@@ -44,7 +44,7 @@ public class AutoreService {
 			return update;
 		} 
 		else {
-			throw new CatalogoException("Ops! Qualcosa è andato storto!");
+			throw new CatalogoException("ERRORE!");
 		}
 	}
 

@@ -45,7 +45,7 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 		autore3.setNome("Pasquale");
 		autore3.setCognome("Torcasio");
 		autoreRepository.save(autore3);
-
+		
 		Categoria categoria = new Categoria();
 		categoria.setNome("Autobiografia");
 		categoriaRepository.save(categoria);
@@ -69,15 +69,15 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 		libro1.setPrezzo(19.99);
 
 		Libro libro2 = new Libro();
-		libro2.setTitolo("Bbbbanalmente softer");
+		libro2.setTitolo("Bbbbanalmente sono diventato un frontender");
 		libro2.setAnnoPubblicazione(2019);
 		libro2.setPrezzo(14.99);
 		
 		Libro libro3 = new Libro();
-		libro3.setTitolo("Nduja e soppressata");
-		libro3.setAnnoPubblicazione(2022);
+		libro3.setTitolo("Cuore");
+		libro3.setAnnoPubblicazione(2019);
 		libro3.setPrezzo(14.99);
-
+		
 		libro.getAutori().add(autore);
 		libro.getCategorie().add(categoria);
 		libroRepository.save(libro);

@@ -34,12 +34,15 @@ public class Libro {
 	@JoinTable(name = "libri_categorie", joinColumns = @JoinColumn(name = "libri_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "categoria_id", referencedColumnName = "id"))
 	private Set<Categoria> categorie = new HashSet<>();
 
-	public void addCategoria(Categoria categoria) {
-		this.categorie.add(categoria);
+	public void deleteAllFromSet(Categoria c) {
+        if(this.categorie.contains(c)) {
+            this.categorie.remove(c);
+        }
 	}
-
-	public void addAutore(Autore autore) {
-		this.autori.add(autore);
+	public void deleteAllFromSet(Autore a) {
+		if (this.autori.contains(a)) {
+			this.autori.remove(a);
+		
+		}
 	}
-	
 }
