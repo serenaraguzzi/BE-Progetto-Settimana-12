@@ -69,13 +69,13 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 		libro1.setPrezzo(19.99);
 
 		Libro libro2 = new Libro();
-		libro2.setTitolo("Bbbbanalmente sono diventato un frontender");
-		libro2.setAnnoPubblicazione(2019);
+		libro2.setTitolo("Bbbbanalmente non sono più un backender!");
+		libro2.setAnnoPubblicazione(2022);
 		libro2.setPrezzo(14.99);
 		
 		Libro libro3 = new Libro();
 		libro3.setTitolo("Cuore");
-		libro3.setAnnoPubblicazione(2019);
+		libro3.setAnnoPubblicazione(2022);
 		libro3.setPrezzo(14.99);
 		
 		libro.getAutori().add(autore);
