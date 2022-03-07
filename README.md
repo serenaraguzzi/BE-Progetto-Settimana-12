@@ -19,6 +19,6 @@ tutti gli altri metodi sono accessibili solo ad utenti admin.
 
 In ogni metodo vi è la descrizione e l'utilizzo per l'inserimento dei dati.
 
-Sono presenti alcuni test base Junit e il database di postgreSQL.
+Sono presenti alcuni test base JUnit e il database di postgreSQL.
 
 Serena Raguzzi
