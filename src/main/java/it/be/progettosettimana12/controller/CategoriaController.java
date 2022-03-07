@@ -2,7 +2,6 @@ package it.be.progettosettimana12.controller;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +40,7 @@ public class CategoriaController {
 		List<Categoria> findAll = categoriaService.findAllCategorie();
 		if (!findAll.isEmpty()) {
 			return new ResponseEntity<>(findAll, HttpStatus.OK);
-		} 
+		}
 		else {
 			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 		}
@@ -54,7 +53,7 @@ public class CategoriaController {
 		Optional<Categoria> find = categoriaService.findCategoriaById(id);
 		if (find.isEmpty()) {
 			return new ResponseEntity<>(find.get(), HttpStatus.NO_CONTENT);
-		} 
+		}
 		else {
 			return new ResponseEntity<>(find.get(), HttpStatus.OK);
 		}
@@ -81,7 +80,7 @@ public class CategoriaController {
 			}
 			categoriaService.deleteCategoriaById(id);
 			return new ResponseEntity<>("Categoria cancellata", HttpStatus.OK);
-		} 
+		}
 		else {
 			return new ResponseEntity<>("Categoria non trovata", HttpStatus.BAD_REQUEST);
 		}

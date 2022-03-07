@@ -57,6 +57,10 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 		Categoria categoria2 = new Categoria();
 		categoria2.setNome("Fantascienza");
 		categoriaRepository.save(categoria2);
+		
+		Categoria categoria3 = new Categoria();
+		categoria3.setNome("Bestseller");
+		categoriaRepository.save(categoria3);
 
 		Libro libro = new Libro();
 		libro.setTitolo("Votatemi e vi restituirò un ArrayList di cribbio");
@@ -78,6 +82,11 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 		libro3.setAnnoPubblicazione(2022);
 		libro3.setPrezzo(14.99);
 		
+		Libro libro4 = new Libro();
+		libro4.setTitolo("Noi altri de Roma");
+		libro4.setAnnoPubblicazione(2022);
+		libro4.setPrezzo(9.99);
+		
 		libro.getAutori().add(autore);
 		libro.getCategorie().add(categoria);
 		libroRepository.save(libro);
@@ -93,6 +102,11 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 		libro3.getAutori().add(autore3);
 		libro3.getCategorie().add(categoria1);
 		libroRepository.save(libro3);
+		
+		libro4.getAutori().add(autore1);
+		libro4.getAutori().add(autore2);
+		libro4.getCategorie().add(categoria3);
+		libroRepository.save(libro4);
 	}
 
 }

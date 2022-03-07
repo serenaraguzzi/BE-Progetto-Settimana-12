@@ -2,6 +2,7 @@ package it.be.progettosettimana12.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -75,6 +76,31 @@ public class LibroController {
 	public ResponseEntity<Libro> updateLibro(@PathVariable(required = true) Long id, @RequestBody Libro libro) {
 		Libro save = libroService.updateLibro(id, libro);
 		return new ResponseEntity<>(save, HttpStatus.OK);
+	}
+
+	@GetMapping("/findallLibriByAutori/{autori}")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+	@Operation(summary = "Trova tutti i libri disponibili di determinati autori", description = "Inserire gli ID degli autori tramite 'Add integer item'")
+	public ResponseEntity<List<Libro>> findAllByAutori(@PathVariable Set<Long> autori) {
+		List<Libro> libri = libroService.findAllLibriByAutori(autori);
+		if (!libri.isEmpty()) {
+			return new ResponseEntity<>(libri, HttpStatus.OK);
+		} 
+		else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@GetMapping("/findallLibriByCategorie/{categorie}")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+	@Operation(summary = "Trova tutti i libri disponibili di determinate categorie", description = "Inserire gli ID delle categorie tramite 'Add integer item'")
+	public ResponseEntity<List<Libro>> findAllByCategorie(@PathVariable Set<Long> categorie) {
+		List<Libro> libri = libroService.findAllByCategorie(categorie);
+		if (!libri.isEmpty()) {
+			return new ResponseEntity<>(libri, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
 	}
 
 }
