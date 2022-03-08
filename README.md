@@ -7,7 +7,7 @@ Effettuare il login con admin con le seguenti credenziali:
 
 { "userName" : "admin", "password" : "admin" }
 
-Altrimenti utilizzare le credenziali di user ("userName" : "admin", "password" : "admin").
+Altrimenti utilizzare le credenziali di user ("userName" : "user", "password" : "user").
 
 Utlizzare poi il JWT generato per accedere all'authorize.
 
